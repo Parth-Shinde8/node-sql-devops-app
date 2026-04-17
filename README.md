@@ -1,60 +1,54 @@
-# Angular with Node and Mysql - kickstart
-  A demo app to demonstrate 3 tier application architecture with Angular (client side), Node.js (server side) and Mysql (database).
-  
-## Prerequisite Installation:
+# 🚀 End-to-End DevOps Pipeline on AWS with Terraform, Kubernetes (K3s), CI/CD & Monitoring
 
-  1. Install **Node** latest version [*Run node -v if version shown so node properly installed*]
-  2. Install **Mysql** and create database and execute below sql query to create users table in your database
-  
-     ```
-      CREATE TABLE Users(
-        ID int NOT NULL AUTO_INCREMENT,
-        Name varchar(255),
-        Age int,
-        City varchar(255),
-        PRIMARY KEY (ID)
-      );
-     ```
-## Directory structure:
+## 📌 Overview
+Designed and implemented a production-style DevOps pipeline to deploy and monitor a containerized Node.js application using AWS, Terraform, Kubernetes (K3s), and GitHub Actions.
 
-  - node-sql 
-    - public
-      - config.js
-      - core.js
-      - index.html
-      - query.js
-    - app.js
-    - package.json
+This project demonstrates real-world DevOps practices including Infrastructure as Code (IaC), CI/CD automation, container orchestration, and monitoring.
 
-## How to start:
+---
 
-  1. Git clone node-sql repository
-  2. Install all npm dependencies using below command
-      ```
-      npm install
-      ```
-  3. Configure database settings here
-     > node-sql/public/config.js
-     
-  4. Run node server using below command
-     ```
-     node app.js
-     ```
-  5. Here you go server is up at *http://localhost:8080/*
+## 🏗️ Architecture
 
-## End to End data flow:
+- Infrastructure provisioned using **Terraform**
+- Application containerized using **Docker**
+- Deployed on **K3s (Lightweight Kubernetes)** running on AWS EC2
+- CI/CD pipeline implemented using **GitHub Actions**
+- Monitoring with **Prometheus & Grafana**
+- Remote Terraform state stored in **S3** with **DynamoDB state locking**
 
-  1. Once you open browser *index.html* file will be loaded as define in *app.js*
-  
-      ```
-       app.get('*', function(req, res) {
-         // load the single view file (angular will handle the page changes on the front-end)
-         res.sendfile('./public/index.html'); 
-       });
-       ```
-  2. HTML is binded to a angular *mainController*, written in *core.js* file
-     > recommended controller and services should be in seperate files
-  3. APIs are written in *app.js* from where it maps CRUD method of *query.js* file, which is responsible to communicate with database
+---
 
-## Live demo on:
-  *https://node-sql.herokuapp.com/*
+## ⚙️ Tech Stack
+
+- **Cloud:** AWS (EC2, VPC, RDS, S3, DynamoDB)
+- **IaC:** Terraform
+- **Containerization:** Docker
+- **Orchestration:** Kubernetes (K3s)
+- **CI/CD:** GitHub Actions
+- **Monitoring:** Prometheus, Grafana
+- **Database:** MySQL (AWS RDS)
+
+---
+
+## 🚀 Features
+
+- Infrastructure as Code using Terraform (VPC, EC2, RDS)
+- Automated CI/CD pipeline (build → push → deploy)
+- Dockerized Node.js application
+- Kubernetes-based deployment using K3s
+- Real-time monitoring with Grafana dashboards
+- Prometheus metrics collection
+- Remote Terraform state management with S3
+- State locking using DynamoDB to prevent concurrent changes
+
+---
+
+## 🔄 CI/CD Workflow
+
+1. Developer pushes code to GitHub
+2. GitHub Actions builds Docker image
+3. Image pushed to DockerHub
+4. GitHub Actions SSH into EC2 instance
+5. Kubernetes deployment updated using:
+   ```bash
+   kubectl rollout restart deployment node-app

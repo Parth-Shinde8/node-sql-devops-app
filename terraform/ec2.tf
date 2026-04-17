@@ -33,7 +33,7 @@ resource "aws_security_group" "ec2_sg" {
 
 resource "aws_instance" "devops_ec2" {
   ami                    = "ami-0e670eb768a5fc3d4"
-  instance_type          = "t2.micro"
+  instance_type          = "t3a.medium"
   subnet_id              = aws_subnet.public1.id
   vpc_security_group_ids = [aws_security_group.ec2_sg.id]
 
