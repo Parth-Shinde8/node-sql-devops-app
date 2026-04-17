@@ -34,5 +34,6 @@ jobs:
         username: ec2-user
         key: ${{ secrets.EC2_SSH_KEY }}
         script: |
+          export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
           docker pull parthshinde8/node-sql-app:latest
           kubectl rollout restart deployment node-app
